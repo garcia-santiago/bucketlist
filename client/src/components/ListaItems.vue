@@ -1,7 +1,7 @@
 <template>
     <h1> Items</h1>
-
-    <form @submit.prevent="agregarItem">
+    <button class="btn" @click="descargarExcel">Descargar excel</button>
+    <form @submit.prevent="agregarItem" class="btn">
         <input type="text" placeholder="Ir al Everest..." v-model="nuevoItem" required>
         <input type="submit" value="Añadir">
     </form>
@@ -26,7 +26,11 @@ export default {
         }
     },
     methods: {
+        descargarExcel(){
+            window.location.href = 'api/bucketListItems/excel'
+        },
         obtenerItems(){
+            // axios.get('http://localhost:3000/api/bucketListItems')
             axios.get('api/bucketListItems')
             .then(respuesta => {
                 console.log(respuesta.data);
@@ -34,11 +38,13 @@ export default {
             })
         },
         agregarItem(){
+            // axios.post('http://localhost:3000/api/bucketListItems', {description: this.nuevoItem})
             axios.post('api/bucketListItems', {description: this.nuevoItem})
             .then(respuesta => {
                 console.log(respuesta);
                 this.items.push(respuesta.data)
             })
+            this.nuevoItem="";
         }
     },
     mounted() {
@@ -48,5 +54,7 @@ export default {
 </script>
 
 <style>
-
+.btn{
+    margin-bottom: 0.5em;
+}
 </style>
