@@ -1,14 +1,17 @@
 <template>
   <ListaItems />
+  <Footer />
 </template>
 
 <script>
 import ListaItems from './components/ListaItems.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
-    ListaItems
+    ListaItems,
+    Footer,
   }
 }
 </script>
